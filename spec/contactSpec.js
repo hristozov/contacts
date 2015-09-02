@@ -25,13 +25,20 @@ describe('Contact', function() {
 
   it('should add a contact in data.csv', function(done) {
     Contact.add('Ivan, ivan@gmail.com', function(err) {
-      if (!err) done();
+      expect(err).toBeFalsy();
+      done();
     });
   }, 1000);
 
   it('should find a contact by name', function(done) {
     Contact.find('Ivan', function(err, results) {
-      if (!err) done();
+      expect(err).toBeFalsy();
+      expect(results).toEqual([
+        'Ivan, ivan.dobrev@gmail.com',
+        'Ivan, ivan@gmail.com',
+        'Ivan, ivan@gmail.com'
+      ]);
+      done();
     });
   }, 1000);
 });
